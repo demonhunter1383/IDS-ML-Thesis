@@ -34,3 +34,65 @@ The raw PCAP files were not downloaded at this stage.
 
 ### Next step
 Inspect the structure and contents of the eight CSV files without modifying the raw data.
+
+## 2026-09-19 — Dataset structure and class distribution
+
+### Objective
+Inspect the structure and label distribution of the eight CIC-IDS2017 MachineLearningCSV files without modifying the raw data.
+
+### Dataset structure
+
+The eight CSV files contain a total of **2,830,743 flow records**.
+
+The inspected files contain **79 columns**:
+- 78 traffic-related features
+- 1 target column: `Label`
+
+The features describe characteristics of network flows, including:
+- flow duration
+- forward and backward packet counts
+- byte counts
+- packet sizes
+- packet timing / inter-arrival times
+- TCP flag counts
+- packet and byte rates
+
+### Class distribution
+
+| Label | Number of samples |
+|---|---:|
+| BENIGN | 2,273,097 |
+| DoS Hulk | 231,073 |
+| PortScan | 158,930 |
+| DDoS | 128,027 |
+| DoS GoldenEye | 10,293 |
+| FTP-Patator | 7,938 |
+| SSH-Patator | 5,897 |
+| DoS slowloris | 5,796 |
+| DoS Slowhttptest | 5,499 |
+| Bot | 1,966 |
+| Web Attack – Brute Force | 1,507 |
+| Web Attack – XSS | 652 |
+| Infiltration | 36 |
+| Web Attack – SQL Injection | 21 |
+| Heartbleed | 11 |
+
+### Observations
+
+The dataset is highly imbalanced. `BENIGN` is by far the largest class, while several attack classes contain very few samples.
+
+The smallest classes are:
+- Heartbleed: 11 samples
+- Web Attack – SQL Injection: 21 samples
+- Infiltration: 36 samples
+
+This class imbalance will need to be considered when designing the evaluation methodology. Accuracy alone will not be sufficient to evaluate the intrusion detection models.
+
+The dataset is also organized by capture day and attack scenario. This structure may be relevant when designing train/test splits and investigating whether random splitting produces overly optimistic results.
+
+### Data integrity
+
+The raw CSV files were inspected without modifying them. Any future cleaning or preprocessing will be performed on derived/processed data rather than the original files.
+
+### Next step
+Continue dataset inspection by examining missing values, infinite values, and other data-quality issues before beginning preprocessing.
