@@ -96,3 +96,41 @@ The raw CSV files were inspected without modifying them. Any future cleaning or 
 
 ### Next step
 Continue dataset inspection by examining missing values, infinite values, and other data-quality issues before beginning preprocessing.
+
+## 2026-10-02 — Raw data quality pass (P1)
+
+- Row-level NaN/Inf check: 2,867 / 2,830,743 rows (0.10%) contain
+  at least one NaN or Inf value across the 78 numeric features.
+  Worst file: Wednesday-workingHours.pcap_ISCX.csv (1,297 rows).
+  Breakdown by label confirmed all affected rows belong to BENIGN
+  or large attack classes (DoS Hulk, PortScan, DDoS, Bot,
+  FTP-Patator) -- none fall in Heartbleed, SQL Injection, or
+  Infiltration.
+  Decision: drop all 2,867 affected rows uniformly. No special
+  handling needed for rare classes.
+
+- Fwd Header Length.1: confirmed via .equals() to be an exact
+  duplicate of Fwd Header Length in all 8 files.
+  Decision: drop Fwd Header Length.1.
+
+- Zero-variance check (per file): 8 columns are constant in every
+  one of the 8 files -- Bwd PSH Flags, Bwd URG Flags,
+  Fwd Avg Bytes/Bulk, Fwd Avg Packets/Bulk, Fwd Avg Bulk Rate,
+  Bwd Avg Bytes/Bulk, Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate.
+  Decision: drop these 8 (zero information for any classifier).
+  Two further columns -- Fwd URG Flags and CWE Flag Count -- are
+  constant in 7/8 files but NOT constant in
+  Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv.
+  Not dropping yet -- investigating whether this is a genuine
+  Infiltration-specific signal or just noise (see next entry).
+
+  - Fwd URG Flags / CWE Flag Count: cross-tab against Label in the
+  Infiltration file shows all 315 rows with value 1 are BENIGN;
+  all 36 Infiltration rows are 0 on both columns. The variation is
+  not attack-related -- it's noise from that day's benign traffic.
+  Decision: drop both columns.
+
+Final column drop list (11 total): Fwd Header Length.1,
+Bwd PSH Flags, Fwd URG Flags, Bwd URG Flags, CWE Flag Count,
+Fwd Avg Bytes/Bulk, Fwd Avg Packets/Bulk, Fwd Avg Bulk Rate,
+Bwd Avg Bytes/Bulk, Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate.

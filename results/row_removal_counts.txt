@@ -1,0 +1,8 @@
+Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv: rows_read=225745, empty_rows_removed=0, missing_or_empty_labels_removed=0, invalid_numeric_rows_removed=34, rows_left=225711
+Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv: rows_read=286467, empty_rows_removed=0, missing_or_empty_labels_removed=0, invalid_numeric_rows_removed=371, rows_left=286096
+Friday-WorkingHours-Morning.pcap_ISCX.csv: rows_read=191033, empty_rows_removed=0, missing_or_empty_labels_removed=0, invalid_numeric_rows_removed=122, rows_left=190911
+Monday-WorkingHours.pcap_ISCX.csv: rows_read=529918, empty_rows_removed=0, missing_or_empty_labels_removed=0, invalid_numeric_rows_removed=437, rows_left=529481
+Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv: rows_read=288602, empty_rows_removed=0, missing_or_empty_labels_removed=0, invalid_numeric_rows_removed=207, rows_left=288395
+Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv: rows_read=458968, empty_rows_removed=288602, missing_or_empty_labels_removed=0, invalid_numeric_rows_removed=135, rows_left=170231
+Tuesday-WorkingHours.pcap_ISCX.csv: rows_read=445909, empty_rows_removed=0, missing_or_empty_labels_removed=0, invalid_numeric_rows_removed=264, rows_left=445645
+Wednesday-workingHours.pcap_ISCX.csv: rows_read=692703, empty_rows_removed=0, missing_or_empty_labels_removed=0, invalid_numeric_rows_removed=1297, rows_left=691406
